@@ -9,7 +9,9 @@ A two-pass streaming ranker that scores and ranks candidates for an AI/ML engine
 ## Reproduce the submission
 
 ```bash
-pip install -e .
+git clone https://github.com/arnoldsachith/sacnold_candidate_tracker.git
+cd sacnold_candidate_tracker
+pip install -r requirements.txt
 python scripts/rank.py --candidates ./candidates.jsonl --out ./submission.csv
 ```
 
@@ -29,15 +31,7 @@ python scripts/rank.py \
 
 ---
 
-## Setup
-
 **Requirements:** Python 3.10+, no GPU needed.
-
-```bash
-git clone <this-repo>
-cd sacnold
-pip install -e .
-```
 
 ---
 
