@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "sacnold"
+version = "2.0.0"
+description = "Candidate ranking engine for the Redrob Intelligent Candidate Discovery challenge"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+rank-candidates = "sacnold.pipeline.ranker:main"

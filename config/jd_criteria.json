@@ -1,0 +1,160 @@
+{
+  "_doc": "Scoring criteria for the Senior AI Engineer role at Redrob. Human-authored rubric distilled from the job description. Every weight is defensible with a JD line at the Stage-5 interview. Weights in component_weights sum exactly to 1.0 (asserted at runtime).",
+
+  "_jd_source": "rules_hackathon/job_description.docx",
+
+  "role_summary": "Senior AI Engineer to own the intelligence layer (ranking, retrieval, matching) of Redrob's AI-native recruiting product. The JD wants a shipper-leaning engineer with production embeddings/retrieval/ranking experience at product companies, strong Python, and rigorous ranking-evaluation instincts. Explicitly states: reasoning about JD intent, not keyword overlap. Warns against keyword stuffers and values plain-language-described experience equally.",
+
+  "component_weights": {
+    "_note": "Sum = 1.0. Asserted at runtime. TF-IDF cosine added in v2 as semantic complement to BM25.",
+    "career_evidence":      0.30,
+    "skills_trust_tiered":  0.18,
+    "lexical_bm25":         0.11,
+    "tfidf_cosine":         0.08,
+    "domain_nlp_ir":        0.11,
+    "experience_band":      0.10,
+    "product_vs_services":  0.06,
+    "external_validation":  0.04,
+    "location":             0.02
+  },
+
+  "core_evidence_keywords": [
+    "retrieval", "ranking", "rank", "recommendation", "recommender", "recsys",
+    "search relevance", "search", "information retrieval", "learning to rank",
+    "embedding", "embeddings", "vector search", "semantic search", "hybrid search",
+    "personalization", "personalisation", "matching", "nearest neighbor", "ann", "faiss",
+    "elasticsearch", "opensearch", "solr", "lucene", "bm25",
+    "candidate generation", "re-rank", "reranking", "ndcg", "mrr", "ctr prediction",
+    "relevance", "re-ranking", "two-tower", "cross-encoder"
+  ],
+
+  "build_verbs": [
+    "built", "build", "designed", "shipped", "deployed", "developed", "architected",
+    "owned", "led", "launched", "scaled", "implemented", "productionized",
+    "created", "wrote", "maintained", "optimized", "improved"
+  ],
+
+  "must_haves": {
+    "_note": "Absence is not an automatic zero — JD warns against pure keyword matching. Plain-language descriptions of these concepts are equally valid.",
+    "embeddings_retrieval":    ["embeddings", "sentence-transformers", "openai embeddings", "bge", "e5", "retrieval", "vector search", "semantic search"],
+    "vector_or_hybrid_infra":  ["pinecone", "weaviate", "qdrant", "milvus", "faiss", "opensearch", "elasticsearch", "vector database", "hybrid search"],
+    "ranking_evaluation":      ["ndcg", "mrr", "map", "a/b test", "offline evaluation", "learning to rank", "ltr", "ranking metrics"],
+    "python":                  ["python"]
+  },
+
+  "nice_to_haves": [
+    "lora", "qlora", "peft", "fine-tuning", "xgboost", "lightgbm", "learning to rank",
+    "distributed systems", "inference optimization", "open source", "hr-tech",
+    "recruiting", "marketplace", "two-tower", "cross-encoder", "reranking"
+  ],
+
+  "plain_language_signals": {
+    "_note": "v2 addition. JD explicitly warns about plain-language fits being missed by keyword matchers. These phrases signal the right expertise without using canonical JD vocabulary. Boost candidates who use these even if they lack exact JD keywords.",
+    "terms": {
+      "find relevant":        0.35,
+      "surface relevant":     0.35,
+      "surface the right":    0.30,
+      "understand queries":   0.30,
+      "query understanding":  0.30,
+      "rank results":         0.40,
+      "order results":        0.30,
+      "sort results":         0.25,
+      "match candidates":     0.35,
+      "match jobs":           0.35,
+      "similar items":        0.25,
+      "similar documents":    0.25,
+      "relevance score":      0.35,
+      "personaliz":           0.30,
+      "recommend":            0.30,
+      "build models that":    0.20,
+      "train models":         0.20,
+      "score candidates":     0.35,
+      "improve results":      0.25,
+      "quality of results":   0.30,
+      "search quality":       0.35
+    },
+    "max_boost": 0.10
+  },
+
+  "keyword_stuffer_detection": {
+    "_note": "Candidates who list many JD-relevant skills but have zero endorsements AND zero usage duration are likely padding their profile. Apply a fit penalty above the threshold.",
+    "stuffer_ratio_threshold": 0.65,
+    "penalty_factor": 0.60
+  },
+
+  "cv_speech_dominance": {
+    "_note": "v2 quantified version. If >55% of candidate's skills are from the CV/speech domain AND NLP/IR skills are fewer than 2 → apply penalty.",
+    "cv_speech_keywords": [
+      "computer vision", "opencv", "image classification", "object detection",
+      "image segmentation", "speech recognition", "asr", "tts", "text-to-speech",
+      "robotics", "slam", "lidar", "gans", "yolo", "object tracking",
+      "pose estimation", "audio processing", "whisper"
+    ],
+    "dominance_threshold": 0.55,
+    "penalty_factor": 0.55
+  },
+
+  "hard_disqualifiers": {
+    "_note": "These DOWN-WEIGHT heavily. Deletion is reserved for honeypots only.",
+    "cv_speech_robotics_dominant_no_nlp": {
+      "keywords": ["computer vision", "opencv", "image classification", "object detection",
+                   "image segmentation", "speech recognition", "asr", "tts",
+                   "text-to-speech", "robotics", "slam", "lidar", "gans", "yolo"],
+      "rule": "CV/speech/robotics dominant AND no NLP/IR signal → wrong domain."
+    },
+    "pure_research_no_production": {
+      "keywords": ["research scientist", "phd researcher", "research only", "publications", "academic lab"],
+      "rule": "Research title with no production/shipping/retrieval evidence → down-weight."
+    }
+  },
+
+  "soft_penalties": {
+    "recent_langchain_only": {
+      "keywords": ["langchain", "llamaindex", "openai api", "gpt wrapper", "prompt engineering"],
+      "rule": "AI experience is ONLY recent LLM-framework glue with no pre-LLM retrieval/ranking depth → mild penalty."
+    },
+    "title_chaser": {
+      "rule": "Many short stints (<18mo) climbing Senior→Staff→Principal across companies → mild penalty."
+    },
+    "consulting_career": {
+      "companies": ["tcs", "infosys", "wipro", "accenture", "cognizant", "capgemini",
+                    "mphasis", "mindtree", "ltimindtree", "hcl", "tech mahindra"],
+      "rule": "Entire career at consulting/services firms → penalty. Prior-product + current-consulting is fine."
+    }
+  },
+
+  "experience_band": {
+    "_note": "Soft lerp curve (v2), not a hard cutoff. JD: '5-9 is a range, not a requirement; consider outside if other signals strong'.",
+    "ideal_min": 5, "ideal_max": 9,
+    "acceptable_min": 4, "acceptable_max": 11,
+    "soft_floor": 3, "soft_ceiling": 14
+  },
+
+  "location": {
+    "_note": "India-preferred (Noida/Pune offices). Outside India case-by-case, no visa sponsorship.",
+    "preferred_cities": ["noida", "pune", "hyderabad", "mumbai", "delhi", "gurgaon",
+                         "gurugram", "bangalore", "bengaluru", "ncr", "new delhi"],
+    "preferred_country": "india",
+    "relocation_bonus": true
+  },
+
+  "behavioral_multiplier": {
+    "_note": "v2 adds offer_acceptance_rate signal. Bounded multiplier applied AFTER fit score. Modifier, not primary ranker.",
+    "bounds": {"min": 0.45, "max": 1.10},
+    "stale_after_days": 90,
+    "very_stale_after_days": 180,
+    "low_response_rate": 0.15,
+    "weights": {
+      "_note": "These sum to 1.0.",
+      "recency":                  0.22,
+      "open_to_work":             0.13,
+      "recruiter_response_rate":  0.18,
+      "interview_completion_rate":0.10,
+      "offer_acceptance_rate":    0.08,
+      "saved_by_recruiters_30d":  0.09,
+      "notice_period":            0.08,
+      "verified_trust":           0.07,
+      "profile_completeness":     0.05
+    }
+  }
+}
