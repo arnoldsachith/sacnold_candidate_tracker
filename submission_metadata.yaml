@@ -15,7 +15,7 @@ team_members:
 # ============================================================================
 # Code and reproducibility
 # ============================================================================
-github_repo: ""
+github_repo: "https://github.com/arnoldsachith/sacnold_candidate_tracker"
 # Required. Must be reachable. Private repos OK if you can grant organizer
 # access at Stage 3 (the email to add will be communicated then).
 
@@ -24,7 +24,7 @@ sandbox_link: "https://huggingface.co/spaces/ArnoldSachith/sacnold"
 # candidate sample. See Section 10.5 of submission_spec.md for acceptable
 # platforms (HuggingFace Spaces, Streamlit Cloud, Replit, Colab, Docker, Binder).
 
-reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+reproduce_command: "python scripts/rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 # The single command that produces submission.csv from candidates.jsonl.
 # Should run end-to-end within 5 minutes on CPU with 16GB RAM and no network.
 
@@ -34,7 +34,7 @@ reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submi
 compute:
   platform: "Windows, CPU only"                    # Or: "AWS EC2 c5.4xlarge", "Local Linux box", etc.
   cpu_cores: 8                                  # Number of CPU cores used
-  ram_gb: 16                                    # Available RAM in GB
+  ram_gb: 8                                    # Available RAM in GB
   python_version: "3.10+"                      # python --version
   os: "Windows"                              # Or "Ubuntu 22.04 LTS", etc.
   uses_gpu_for_inference: false                 # Must be false — see compute constraints
@@ -52,7 +52,7 @@ ai_tools_used:
   - "Claude"    
 
 ai_usage_summary: |
-  Used Claude for architecture discussion, code review, and debugging during
+  Used Claude for code review, and debugging during
   development. No candidate data was fed to any LLM. The ranking step itself
   contains zero LLM calls. Claude was used purely as a development assistant, not as part of the
   ranking pipeline.
