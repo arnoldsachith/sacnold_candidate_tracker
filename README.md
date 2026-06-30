@@ -39,8 +39,6 @@ cd sacnold
 pip install -e .
 ```
 
-All dependencies are pure Python and declared in `pyproject.toml`. No pre-computation step is needed — the ranker builds its IDF table live in Pass 1.
-
 ---
 
 ## Architecture
@@ -156,5 +154,4 @@ sacnold/
 ## Team
 
 **Team name:** Sacnold  
-**Email:** arnoldautomatic@rediffmail.com  
 **Sandbox:** https://huggingface.co/spaces/ArnoldSachith/sacnold
