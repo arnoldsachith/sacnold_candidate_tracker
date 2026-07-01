@@ -7,7 +7,6 @@ Usage:
     python scripts/rank.py --criteria config/jd_criteria.json --out data/submission.csv
 
 Install the package first for cleaner imports:
-    pip install -e .
     rank-candidates --help
 """
 from __future__ import annotations
