@@ -32,7 +32,7 @@ def main() -> None:
     )
     ap.add_argument(
         "--out",
-        default="data/submission.csv",
+        default="data/team_sacnold.csv",
         help="Output CSV path",
     )
     ap.add_argument(
