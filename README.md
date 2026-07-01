@@ -95,10 +95,10 @@ Seven hard checks gate a candidate to `is_honeypot = True`:
 
 - **A** — start date precedes company founding date
 - **B** — claimed experience years exceed company age
-- **E** — expert/advanced proficiency with zero duration months across many skills
-- **F** — total duration months across all jobs exceed plausible career span
-- **G** — skills-to-experience ratio implausibly high
-- **H** — assessment score claimed with no skills listed
+- **C** — expert/advanced proficiency with zero duration months across many skills
+- **D** — total duration months across all jobs exceed plausible career span
+- **E** — skills-to-experience ratio implausibly high
+- **F** — assessment score claimed with no skills listed
 
 Three soft flags add a 0.95× penalty per flag without hard-gating.
 
